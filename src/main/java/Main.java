@@ -13,7 +13,7 @@ public class Main {
         }));
         while (true) {
             try {
-                System.out.println("$ ");
+                System.out.print("$ ");
                 String input = scanner.nextLine();
                 Command command = commandFactory.getCommand(input);
                 if (command.validate()) {
