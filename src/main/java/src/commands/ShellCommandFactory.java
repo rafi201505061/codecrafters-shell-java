@@ -16,6 +16,7 @@ public class ShellCommandFactory implements CommandFactory {
       case "exit":
         return new ExitCommand(commandParts);
       case "echo":
+        System.out.println(commandParts);
         return new EchoCommand(commandParts);
       default:
         throw new InvalidCommandException(commandParts.get(0) + ": not found");
