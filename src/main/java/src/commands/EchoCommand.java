@@ -14,6 +14,6 @@ public class EchoCommand extends Command {
 
   @Override
   public void execute() {
-    System.out.println(String.join(",", commandParts.subList(1, commandParts.size())));
+    System.out.println(String.join(" ", commandParts.subList(1, commandParts.size())));
   }
 }
