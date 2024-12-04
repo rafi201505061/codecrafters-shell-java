@@ -24,7 +24,8 @@ public class CdCommand extends Command {
     var commandParts = getCommandParts();
     String path = commandParts.size() >= 2 ? commandParts.get(1) : "~";
     String homeDirectory = System.getenv("HOME");
-    String root = path.startsWith("~/") ? homeDirectory : path.startsWith("/") ? "" : StaticReferences.cwd;
+    String root = path.startsWith("~/") || path.equals("~") ? homeDirectory
+        : path.startsWith("/") ? "" : StaticReferences.cwd;
     Deque<String> stack = new ArrayDeque<>();
     StringTokenizer stringTokenizer = new StringTokenizer(root, "/");
     while (stringTokenizer.hasMoreTokens()) {
