@@ -17,11 +17,11 @@ public class TypeCommand extends Command {
   @Override
   public void execute() {
     var commandParts = getCommandParts();
-    CommandFactory factory = new BuiltinCommandFactory();
+    CommandFactory factory = new GlobalCommandFactory();
     String[] commandName = { commandParts.get(1) };
     Command command = factory.getCommand(Arrays.asList(commandName));
     if (command == null) {
-      System.out.println(commandParts.get(0) + ": not found");
+      System.out.println(commandParts.get(1) + ": not found");
       return;
     }
     if (command instanceof ExecutableBinCommand) {
