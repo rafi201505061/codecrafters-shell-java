@@ -1,7 +1,6 @@
 package src.commands;
 
 import java.io.File;
-import java.nio.file.Paths;
 import java.util.ArrayDeque;
 import java.util.Deque;
 import java.util.List;
@@ -25,8 +24,7 @@ public class CdCommand extends Command {
     var commandParts = getCommandParts();
     String path = commandParts.size() >= 2 ? commandParts.get(1) : "~";
     String homeDirectory = System.getenv("HOME");
-    String workingDirectory = Paths.get("").toAbsolutePath().toString();
-    String root = path.startsWith("~") ? homeDirectory : workingDirectory;
+    String root = path.startsWith("~/") ? homeDirectory : path.startsWith("/") ? "" : StaticReferences.cwd;
     Deque<String> stack = new ArrayDeque<>();
     StringTokenizer stringTokenizer = new StringTokenizer(root, "/");
     while (stringTokenizer.hasMoreTokens()) {
