@@ -1,7 +1,8 @@
 package src.commands;
 
-import java.nio.file.Paths;
 import java.util.List;
+
+import src.StaticReferences;
 
 public class PwdCommand extends Command {
   public PwdCommand(List<String> commandParts) {
@@ -16,7 +17,7 @@ public class PwdCommand extends Command {
 
   @Override
   public void execute() {
-    System.out.println(Paths.get("").toAbsolutePath());
+    System.out.println(StaticReferences.cwd);
   }
 
 }
