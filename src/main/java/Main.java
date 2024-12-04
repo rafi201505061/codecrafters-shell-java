@@ -27,7 +27,7 @@ public class Main {
                 if (command.validate()) {
                     command.execute();
                 } else {
-                    System.out.println(commandParts.get(0) + ": invalid params");
+                    System.out.println(command.getName() + ": invalid params");
                 }
             }
         }
