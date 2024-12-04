@@ -14,6 +14,8 @@ public class BuiltinCommandFactory implements CommandFactory {
         return new EchoCommand(commandParts);
       case "type":
         return new TypeCommand(commandParts);
+      case "pwd":
+        return new PwdCommand(commandParts);
       default:
         return null;
     }
