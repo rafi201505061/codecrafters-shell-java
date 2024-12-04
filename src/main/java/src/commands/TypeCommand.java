@@ -17,7 +17,7 @@ public class TypeCommand extends Command {
     try {
       CommandFactory factory = new ShellCommandFactory();
       Command command = factory.getCommand(commandParts.get(1));
-      System.out.println(command.name + " \033[31mis a shell builtin\033[0m]");
+      System.out.println(command.name + " is a shell builtin");
     } catch (Exception e) {
       System.out.println(e.getMessage());
     }
