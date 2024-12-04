@@ -46,7 +46,7 @@ public class CdCommand extends Command {
     String absolutePath = String.join("/", stack);
     File file = new File(absolutePath);
     if (!file.exists()) {
-      System.out.println("cd: no such file or directory: " + absolutePath);
+      // System.out.println("cd: no such file or directory: " + absolutePath);
     } else {
       StaticReferences.cwd = absolutePath;
     }
