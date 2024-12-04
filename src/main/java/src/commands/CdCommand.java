@@ -44,9 +44,11 @@ public class CdCommand extends Command {
       stack.addLast(token);
     }
     String absolutePath = String.join("/", stack);
+    System.out.println("parts=" + commandParts);
+    System.out.println("ans=" + absolutePath);
     File file = new File(absolutePath);
     if (!file.exists()) {
-      // System.out.println("cd: no such file or directory: " + absolutePath);
+      System.out.println("cd: " + absolutePath + ": no such file or directory");
     } else {
       StaticReferences.cwd = absolutePath;
     }
