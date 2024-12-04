@@ -1,7 +1,7 @@
 package src.commands;
 
-import src.exceptions.InvalidCommandException;
+import java.util.List;
 
 public interface CommandFactory {
-  public Command getCommand(String input) throws InvalidCommandException;
+  public Command getCommand(List<String> commandParts);
 }
