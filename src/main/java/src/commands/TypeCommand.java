@@ -31,20 +31,16 @@ public class TypeCommand extends Command {
     return false;
   }
 
-  private void searchSupportedCommands() {
+  @Override
+  public void execute() {
     try {
       CommandFactory factory = new ShellCommandFactory();
       Command command = factory.getCommand(commandParts.get(1));
       System.out.println(command.name + " is a shell builtin");
     } catch (Exception e) {
-      System.out.println(e.getMessage());
-    }
-  }
-
-  @Override
-  public void execute() {
-    if (!searchPath()) {
-      searchSupportedCommands();
+      if (!searchPath()) {
+        System.out.println(e.getMessage());
+      }
     }
   }
 
