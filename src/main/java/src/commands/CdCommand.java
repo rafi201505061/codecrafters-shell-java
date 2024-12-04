@@ -33,7 +33,7 @@ public class CdCommand extends Command {
     StringTokenizer pathTokenizer = new StringTokenizer(path, "/");
     while (pathTokenizer.hasMoreTokens()) {
       String token = pathTokenizer.nextToken();
-      if (stack.equals("."))
+      if (token.equals("."))
         continue;
       if (token.equals("..") && !stack.isEmpty()) {
         stack.pollLast();
