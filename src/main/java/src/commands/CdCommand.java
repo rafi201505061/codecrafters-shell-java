@@ -39,7 +39,8 @@ public class CdCommand extends Command {
         stack.pollLast();
         continue;
       }
-      stack.addLast(token);
+      if (!token.equals(""))
+        stack.addLast(token);
     }
     String absolutePath = "/" + String.join("/", stack);
     File file = new File(absolutePath);
