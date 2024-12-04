@@ -32,8 +32,12 @@ public class CdCommand extends Command {
       stack.addLast(stringTokenizer.nextToken());
     }
     StringTokenizer pathTokenizer = new StringTokenizer(path, "/");
+    if (path.startsWith("~/") || path.equals("~")) {
+      pathTokenizer.nextToken();
+    }
     while (pathTokenizer.hasMoreTokens()) {
       String token = pathTokenizer.nextToken();
+
       if (token.equals("."))
         continue;
       if (token.equals("..") && !stack.isEmpty()) {
