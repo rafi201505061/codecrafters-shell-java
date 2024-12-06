@@ -32,6 +32,7 @@ public class ShellCommandBuilder implements CommandBuilder {
           queue.pollLast();
         }
       }
+      escape = false;
     }
 
   }
