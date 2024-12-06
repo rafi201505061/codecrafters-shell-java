@@ -23,11 +23,6 @@ public class SimpleShellCommandParser implements CommandParser {
             }
             j += 2;
 
-          } else if (curr == '"' && command.charAt(j) == '\\' && (j + 2) < command.length()
-              && command.charAt(j + 1) == '\\' && command.charAt(j + 2) == 'n') {
-
-            j += 3;
-
           } else {
             chars[len++] = command.charAt(j);
             j++;
