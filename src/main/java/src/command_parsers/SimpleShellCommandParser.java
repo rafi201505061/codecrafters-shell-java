@@ -10,34 +10,39 @@ public class SimpleShellCommandParser implements CommandParser {
     List<String> commandParts = new ArrayList<>();
     char[] chars = new char[command.length()];
     int len = 0;
-    boolean isQuoteEncountered = false, isSpaceEncountered = false;
-    for (int i = 0; i < command.length(); i++) {
+    int i = 0;
+    while (i < command.length()) {
       char curr = command.charAt(i);
       if (curr == '\'' || curr == '"') {
-        if (isQuoteEncountered) {
+        int j = i + 1;
+        while (j < command.length() && command.charAt(j) != curr) {
+          if (curr == '"' && command.charAt(j) == '\\' && (j + 1) < command.length() && (command.charAt(j + 1) == '$'
+              || command.charAt(j + 1) == '\\' || command.charAt(j + 1) == '"' || command.charAt(j + 1) == '\n')) {
+            if (command.charAt(j + 1) != '\n') {
+              chars[len++] = command.charAt(j + 1);
+            }
+            j += 2;
+
+          } else if (curr == '"' && command.charAt(j) == '\\' && (j + 2) < command.length()
+              && command.charAt(j + 1) == '\\' && command.charAt(j + 2) == 'n') {
+
+            j += 3;
+
+          } else {
+            chars[len++] = command.charAt(j);
+            j++;
+          }
+
+        }
+        i = j + 1;
+      } else {
+        if (curr == ' ') {
           commandParts.add(new String(chars, 0, len));
           len = 0;
+        } else {
+          chars[len++] = curr;
         }
-        isQuoteEncountered = !isQuoteEncountered;
-        continue;
-      }
-      if (isQuoteEncountered) {
-        chars[len++] = curr;
-        continue;
-      }
-      if (curr == ' ') {
-        if (isSpaceEncountered) {
-          continue;
-        }
-        isSpaceEncountered = true;
-        if (len > 0) {
-          commandParts.add(new String(chars, 0, len));
-        }
-        len = 0;
-
-      } else {
-        isSpaceEncountered = false;
-        chars[len++] = curr;
+        i++;
       }
     }
     if (len > 0) {
