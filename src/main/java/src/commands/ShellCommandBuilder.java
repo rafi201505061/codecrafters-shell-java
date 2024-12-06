@@ -25,7 +25,7 @@ public class ShellCommandBuilder implements CommandBuilder {
         }
         continue;
       }
-      if ((c == '\'' || c == '"') && escape) {
+      if ((c == '\'' || c == '"') && !escape) {
         if (queue.isEmpty()) {
           queue.addLast(c);
         } else if (c == queue.peekLast()) {
