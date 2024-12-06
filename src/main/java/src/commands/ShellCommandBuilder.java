@@ -14,25 +14,25 @@ public class ShellCommandBuilder implements CommandBuilder {
   }
 
   private void check(String str) {
-    boolean escape = false;
+    // boolean escape = false;
     for (int i = 0; i < str.length(); i++) {
       char c = str.charAt(i);
-      if (c == '\\') {
-        if (i > 0 && str.charAt(i - 1) == '\\')
-          escape = false;
-        else {
-          escape = true;
-        }
-        continue;
-      }
-      if ((c == '\'' || c == '"') && escape) {
+      // if (c == '\\') {
+      // if (i > 0 && str.charAt(i - 1) == '\\')
+      // escape = false;
+      // else {
+      // escape = true;
+      // }
+      // continue;
+      // }
+      if ((c == '\'' || c == '"')) {
         if (queue.isEmpty()) {
           queue.addLast(c);
         } else if (c == queue.peekLast()) {
           queue.pollLast();
         }
       }
-      escape = false;
+      // escape = false;
     }
 
   }
