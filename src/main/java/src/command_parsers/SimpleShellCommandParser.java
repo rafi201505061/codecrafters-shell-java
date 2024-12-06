@@ -37,7 +37,8 @@ public class SimpleShellCommandParser implements CommandParser {
         i = j + 1;
       } else {
         if (curr == ' ') {
-          commandParts.add(new String(chars, 0, len));
+          if (len > 0)
+            commandParts.add(new String(chars, 0, len));
           len = 0;
         } else {
           chars[len++] = curr;
