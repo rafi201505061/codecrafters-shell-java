@@ -40,6 +40,11 @@ public class SimpleShellCommandParser implements CommandParser {
           if (len > 0)
             commandParts.add(new String(chars, 0, len));
           len = 0;
+        } else if (curr == '\\') {
+          if (i + 1 < command.length()) {
+            chars[len++] = command.charAt(i + 1);
+            i++;
+          }
         } else {
           chars[len++] = curr;
         }
